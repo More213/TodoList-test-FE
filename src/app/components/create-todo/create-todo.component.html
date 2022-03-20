@@ -1,0 +1,22 @@
+<div>
+    <h1>Новая задача</h1>
+    <!-- <form action=""> -->
+        <mat-form-field>
+            <input 
+            matInput 
+            class="form-control"
+            [formControl]="todo"
+            placeholder="Название задачи"
+            />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select [formControl]="title">
+              <mat-option *ngFor="let title of titels" [value]="title.id">{{title.title}}</mat-option>
+              <mat-option value="newCategory">Новая категория</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="onNoClick()">отмена</button>
+        <button mat-raised-button (click)="saveTodo()">Ok</button>
+    <!-- </form> -->
+</div>

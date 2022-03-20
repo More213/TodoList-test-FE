@@ -1,0 +1,23 @@
+mat-toolbar{
+    background: #39afda;
+}
+
+mat-icon,
+.mat-toolbar {
+    color: #ffffff;
+}
+
+.button-addTodo {
+    position: absolute;
+    right: 0px;
+    top: -4px;
+}
+
+.toolbar{
+    min-width: 300px;
+}
+.header-wrap {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
