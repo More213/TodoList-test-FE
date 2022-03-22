@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+
+import { MatDialog } from '@angular/material/dialog';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
 
 
@@ -26,13 +26,9 @@ export interface DialogData {
 export class AppComponent{
   constructor(public dialog: MatDialog) {}
 
-  // @Input() todo: DialogData;
-
   openDialog(): void{
-    const dialogConfig = new MatDialogConfig();
     const dialogRef = this.dialog.open(CreateTodoComponent, {
-      width: '400px',
-  
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -40,4 +36,3 @@ export class AppComponent{
     });
   }
 }
-// export const todosArray: DialogData[] = [];
