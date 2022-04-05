@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef} from '@angular/material/dialog';
 import { DialogData } from '../../app.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { APIService } from 'src/app/services/API/api.service';
 
 
 @Component({
@@ -18,11 +19,33 @@ export class CreateTodoComponent implements OnInit {
   })
   isCastomTitle = false;
 
-  constructor(public dialogRef: MatDialogRef<CreateTodoComponent>) {}
+  constructor(public dialogRef: MatDialogRef<CreateTodoComponent>,
+    private Api: APIService) {}
   
   ngOnInit(): void {}
   
+  subNewCategory() {
+    this.Api.addNewCategory({
+      _id: null,
+      title: 'wewfewwe',
+      todos: [{
+          _id: null,
+          text: 'Strewrwring',
+          isCompleted: false
+      }]
+  })
+  }
+
   saveTodo(): void {
+    this.Api.addNewCategory({
+      _id: null,
+      title: this.profileForm.value.title,
+      todos: [{
+          _id: null,
+          text: this.profileForm.value.todo,
+          isCompleted: false
+      }]
+  })
     this.profileForm.reset();
     this.isCastomTitle = false;
     this.onNoClick();

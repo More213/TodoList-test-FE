@@ -1,0 +1,8 @@
+<div class="wrapp-card">
+    <div *ngFor="let category of res">
+    <mat-card class="example-card">
+        <mat-card-title>{{category.title}}</mat-card-title>
+        <input *ngFor="let todo of category.todos" MatPseudoCheckbox type="checkbox"/> <span *ngFor="let todo of category.todos">{{todo.text}}</span>
+    </mat-card>
+</div>
+</div>

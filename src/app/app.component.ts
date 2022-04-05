@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { HttpClient,
+  HttpParams,
+  HttpErrorResponse,
+  HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
+import { APIService } from './services/API/api.service';
 
 
 export interface TodoData {
@@ -23,8 +29,11 @@ export interface DialogData {
 })
 
 
-export class AppComponent{
-  constructor(public dialog: MatDialog) {}
+export class AppComponent implements OnInit {
+  constructor(
+    public dialog: MatDialog) {}
+
+  ngOnInit(): void {}
 
   openDialog(): void{
     const dialogRef = this.dialog.open(CreateTodoComponent, {
