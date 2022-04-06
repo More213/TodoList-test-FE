@@ -11,8 +11,11 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Категория</mat-label>
-            <mat-select formControlName="title">
-              <mat-option *ngFor="let title of titels" [value]="title.id">{{title.title}}</mat-option>
+            <mat-select formControlName="_id">
+              <mat-option *ngFor="let title of titels" [value]="title._id">
+                <!-- <ng-content ></ng-content>  -->
+                  {{title.title}}
+                </mat-option>
               <mat-option (click)="switchCastomTitle()">Новая категория</mat-option>
             </mat-select>
         </mat-form-field>
@@ -26,7 +29,7 @@
         </mat-form-field>
         <div class="flex-row">
             <button mat-raised-button (click)="onNoClick()">отмена</button>
-            <button mat-raised-button [disabled]="profileForm.status !== 'VALID'" (click)="saveTodo()">Ok</button>
+            <button mat-raised-button [disabled]="profileForm.status !== 'VALID'" (click)="saveCategoryTodo()">Ok</button>
         </div>
     </form>
 </div>

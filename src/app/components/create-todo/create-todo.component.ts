@@ -12,11 +12,14 @@ import { APIService } from 'src/app/services/API/api.service';
 })
 
 export class CreateTodoComponent implements OnInit {
-  titels: DialogData[] = []
-  profileForm = new FormGroup({
-    title:  new FormControl('', [Validators.required, Validators.minLength(1)]),
+  titels =[{_id: '624c973cd867a4e8623c39de', title: 'eee'}]
+
+    profileForm = new FormGroup({
+    _id: new FormControl(null),
+    title: new FormControl(''),
     todo: new FormControl('', [Validators.required, Validators.minLength(1)])
   })
+
   isCastomTitle = false;
 
   constructor(public dialogRef: MatDialogRef<CreateTodoComponent>,
@@ -36,12 +39,39 @@ export class CreateTodoComponent implements OnInit {
   })
   }
 
+  saveCategoryTodo(): void {
+    if(this.profileForm.value._id) {
+      this.Api.addNewTodo({
+        _id: this.profileForm.value._id,
+        title: this.titels.find((el) => el._id === this.profileForm.value._id),
+        todos: [{
+            text: this.profileForm.value.todo,
+            isCompleted: false
+        }]
+    })
+    } else {
+      this.Api.addNewCategory({
+        _id: null,
+        title: this.profileForm.value.title,
+        todos: [{
+            id: null,
+            text: this.profileForm.value.todo,
+            isCompleted: false
+        }]
+    })
+
+    }
+    this.profileForm.reset();
+    this.isCastomTitle = false;
+    this.onNoClick();
+  }
+
   saveTodo(): void {
     this.Api.addNewCategory({
       _id: null,
       title: this.profileForm.value.title,
       todos: [{
-          _id: null,
+          id: null,
           text: this.profileForm.value.todo,
           isCompleted: false
       }]

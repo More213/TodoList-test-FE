@@ -11,13 +11,13 @@ import { APIService } from './services/API/api.service';
 
 
 export interface TodoData {
-  id?: string,
+  _id?: string,
   text: string,
   isCompleted: boolean
 }
 
 export interface DialogData {
-  id?: string,
+  _id?: string,
   title: string,
   todos: TodoData[]
 }

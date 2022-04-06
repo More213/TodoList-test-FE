@@ -18,4 +18,9 @@ export class APIService {
     const res = this.httpClient.post(`${this.dataUrl}/post`, category);
     res.subscribe(r => console.log(r))
   }
+
+  public addNewTodo(category: any) {
+    const res = this.httpClient.post(`${this.dataUrl}/postTodo`, category);
+    res.subscribe(r => console.log(r))
+  }
 }
