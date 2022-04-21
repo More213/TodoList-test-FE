@@ -1,8 +1,14 @@
 <div class="wrapp-card">
-    <div *ngFor="let category of res">
-    <mat-card class="example-card">
-        <mat-card-title>{{category.title}}</mat-card-title>
-        <input *ngFor="let todo of category.todos" MatPseudoCheckbox type="checkbox"/> <span *ngFor="let todo of category.todos">{{todo.text}}</span>
-    </mat-card>
-</div>
+        <mat-card *ngFor="let category of categories" class="example-card">
+          
+                <mat-card-title >{{category.title}}</mat-card-title>
+                <div *ngFor="let todo of category.todos">
+                    <mat-checkbox class="todo_style" 
+                    (change)="checkedTodo({todo: todo, categoryId: category._id})" 
+                    [checked]="todo.isCompleted"
+                    [disabled]="todo.isCompleted"
+                    >{{todo.text}}</mat-checkbox>
+                </div>
+        
+        </mat-card>
 </div>

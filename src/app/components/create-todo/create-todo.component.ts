@@ -3,6 +3,13 @@ import { MatDialogRef} from '@angular/material/dialog';
 import { DialogData } from '../../app.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { APIService } from 'src/app/services/API/api.service';
+import { select, Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/state/app.state';
+import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
+import { ICategoryState } from 'src/app/store/state/categories.state';
+import { AddNewCategory } from 'src/app/store/actions/category.actions';
+import { CategoryService } from 'src/app/services/Category/category.service';
+import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
 
 
 @Component({
@@ -12,7 +19,7 @@ import { APIService } from 'src/app/services/API/api.service';
 })
 
 export class CreateTodoComponent implements OnInit {
-  titels =[{_id: '624c973cd867a4e8623c39de', title: 'eee'}]
+  public titels: ICategoryState[] = [];
 
     profileForm = new FormGroup({
     _id: new FormControl(null),
@@ -22,60 +29,41 @@ export class CreateTodoComponent implements OnInit {
 
   isCastomTitle = false;
 
-  constructor(public dialogRef: MatDialogRef<CreateTodoComponent>,
-    private Api: APIService) {}
+  constructor(
+    public dialogRef: MatDialogRef<CreateTodoComponent>,
+    private store: Store<IAppState>,
+    private Api: APIService,
+    private categoryService: CategoryService,
+    private todoService: ToDoService,
+    ) {
+      this.store.pipe(select(selectCategoryList)).subscribe((el) => this.titels =  el)
+    }
   
   ngOnInit(): void {}
-  
-  subNewCategory() {
-    this.Api.addNewCategory({
-      _id: null,
-      title: 'wewfewwe',
-      todos: [{
-          _id: null,
-          text: 'Strewrwring',
-          isCompleted: false
-      }]
-  })
-  }
 
   saveCategoryTodo(): void {
     if(this.profileForm.value._id) {
-      this.Api.addNewTodo({
-        _id: this.profileForm.value._id,
-        title: this.titels.find((el) => el._id === this.profileForm.value._id),
-        todos: [{
+      this.todoService.saveNewToDo(
+        {
+          _id: this.profileForm.value._id,
+          title: '',
+          todos: [{
             text: this.profileForm.value.todo,
             isCompleted: false
-        }]
-    })
+            }]
+          }
+      )
     } else {
-      this.Api.addNewCategory({
+      this.categoryService.saveNewCategory({
         _id: null,
         title: this.profileForm.value.title,
         todos: [{
-            id: null,
+            _id: null,
             text: this.profileForm.value.todo,
             isCompleted: false
         }]
-    })
-
+      })
     }
-    this.profileForm.reset();
-    this.isCastomTitle = false;
-    this.onNoClick();
-  }
-
-  saveTodo(): void {
-    this.Api.addNewCategory({
-      _id: null,
-      title: this.profileForm.value.title,
-      todos: [{
-          id: null,
-          text: this.profileForm.value.todo,
-          isCompleted: false
-      }]
-  })
     this.profileForm.reset();
     this.isCastomTitle = false;
     this.onNoClick();
