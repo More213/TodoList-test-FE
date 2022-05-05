@@ -11,7 +11,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Категория</mat-label>
-            <mat-select formGroupName="_id">
+            <mat-select formControlName="_id">
               <mat-option *ngFor="let title of titels" [value]="title._id">
                 <!-- <ng-content [value]="title.title"></ng-content>  -->
                   {{title.title}}
