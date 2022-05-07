@@ -9,18 +9,18 @@ import { GetCategories } from 'src/app/store/actions/category.actions';
   providedIn: 'root'
 })
 export class APIService {
-  dataUrl = 'http://' + environment.server + ':3000'
+  dataUrl = 'http://' + environment.server + ':8080'
   constructor(
     public httpClient: HttpClient,
     private store: Store<IAppState>) { }
 
   public getString(){
-    const res = this.httpClient.get(`${this.dataUrl}`, {responseType: 'json'});
+    const res = this.httpClient.get(`/getCategories`, {responseType: 'json'});
     return res
   }
 
   public addNewCategory(category: any): any {
-    const res = this.httpClient.post(`${this.dataUrl}/post`, category);
+    const res = this.httpClient.post(`/post`, category);
     res.subscribe((r: any) => {
       if(r.message === 'Post has been submitted successfully!') {
         this.store.dispatch( new GetCategories())
@@ -29,7 +29,7 @@ export class APIService {
   }
 
   public addNewTodo(category: any): any {
-    const res = this.httpClient.post(`${this.dataUrl}/postTodo`, category);
+    const res = this.httpClient.post(`/postTodo`, category);
     res.subscribe((r: any) => {
       if(r.message === 'Post has been submitted successfully!') {
         this.store.dispatch( new GetCategories())
@@ -38,7 +38,7 @@ export class APIService {
   }
 
   public checkTodoRequest(category: any): any {
-    const res = this.httpClient.post(`${this.dataUrl}/checkTodo`, category);
+    const res = this.httpClient.post(`/checkTodo`, category);
     res.subscribe((r: any) => {
       if(r.message === 'Post has been submitted successfully!') {
         this.store.dispatch( new GetCategories())
