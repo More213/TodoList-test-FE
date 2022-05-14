@@ -11,8 +11,9 @@ import {
     GetCategoriesSuccess, 
     UpdateTodo} from "../actions/category.actions";
 import { IAppState } from "../state/app.state";
-
-const secondInterval = interval(1000).pipe(take(2));
+import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { MatDialog } from "@angular/material/dialog";
+import { DialogMessage } from "src/app/components/dialog-message/dialog-message.component";
 
 @Injectable()
 export class CategoryEffects {
@@ -26,24 +27,50 @@ export class CategoryEffects {
     @Effect()
     addCategory = this.actions.pipe(
         ofType<AddNewCategory>(ECategoryActions.AddNewCategory),
-        switchMap(action => this.Api.addNewCategory(action.payload))
+        switchMap( action => this.Api.addNewCategory(action.payload).pipe(
+            map(res =>  {
+                // this.openDialog()
+                this.store.dispatch(new GetCategories())
+            }),
+            catchError(error => of(this.openDialog()))
+        ))
     )
         
     @Effect()
     addNewToDo = this.actions.pipe(
         ofType<UpdateTodo>(ECategoryActions.UpdateTodo),
-        switchMap(action => this.Api.addNewTodo(action.payload))
+        switchMap(action => this.Api.addNewTodo(action.payload).pipe(
+            map(res =>  {
+                this.store.dispatch(new GetCategories())
+            }),
+            catchError(error => of(this.openDialog()))
+        ))
     )
 
     @Effect()
     checkTodo = this.actions.pipe(
         ofType<CheckTodo>(ECategoryActions.CheckTodo),
-        switchMap(action => this.Api.checkTodoRequest(action.payload))
+        switchMap(action => this.Api.checkTodoRequest(action.payload).pipe(
+            map(res =>  {
+                this.store.dispatch(new GetCategories())
+            }),
+            catchError(error => of(this.openDialog()))
+        ))
     )
 
+    openDialog(): void{
+        const dialogRef = this.dialog.open(DialogMessage, {
+          width: '400px'
+        });
+        setTimeout(()=> {
+          dialogRef.close();
+        }, 2000)
+    }
 
     constructor(
         private Api: APIService,
         private actions: Actions,
-    ) {}
+        private store: Store<IAppState>,
+        public dialog: MatDialog,
+        ) {}
 }
