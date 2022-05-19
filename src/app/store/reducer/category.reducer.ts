@@ -1,10 +1,10 @@
 import { CategoriesActions, ECategoryActions } from "../actions/category.actions";
-import { ICategoriesState, initialCategoriesState } from "../state/categories.state";
+import { Categories, initialCategoriesState } from "../state/categories.state";
 
 export const categoryReducer = (
     state = initialCategoriesState,
     action: CategoriesActions
-): ICategoriesState => {
+): Categories => {
     switch(action.type) {
         case ECategoryActions.GetCategoriesSuccess:
             return {
@@ -14,7 +14,6 @@ export const categoryReducer = (
         case ECategoryActions.AddNewCategorySuccess:
             return {
                 ...state,
-                status: action.payload
             }
         default:
             return state

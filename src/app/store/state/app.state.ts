@@ -1,9 +1,10 @@
 import { RouterReducerState } from "@ngrx/router-store";
-import { ICategoriesState, initialCategoriesState } from "./categories.state";
+import { Categories, initialCategoriesState } from "./categories.state";
 
-export interface IAppState {
+
+export class IAppState {
     router?: RouterReducerState;
-    categories: ICategoriesState;
+    categories!: Categories;
 }
 
 export const initialAppState: IAppState = {

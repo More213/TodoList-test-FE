@@ -6,7 +6,7 @@ import { APIService } from 'src/app/services/API/api.service';
 import { select, Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
-import { ICategoryState } from 'src/app/store/state/categories.state';
+import { Category } from 'src/app/store/state/categories.state';
 import { AddNewCategory } from 'src/app/store/actions/category.actions';
 import { CategoryService } from 'src/app/services/Category/category.service';
 import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
@@ -19,7 +19,7 @@ import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
 })
 
 export class CreateTodoComponent implements OnInit {
-  public titels: ICategoryState[] = [];
+  public titels: Category[] = [];
 
     profileForm = new FormGroup({
     _id: new FormControl(null),
@@ -32,7 +32,6 @@ export class CreateTodoComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CreateTodoComponent>,
     private store: Store<IAppState>,
-    private Api: APIService,
     private categoryService: CategoryService,
     private todoService: ToDoService,
     ) {

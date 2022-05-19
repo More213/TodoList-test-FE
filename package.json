@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test", 
+    "test": "ng test",
     "buildncopy": "ng build && (cp -r client ../todoList-build/)",
     "heroku-postbuild": "ng build --prod"
   },
@@ -28,6 +28,7 @@
     "@ngrx/store": "^13.1.0",
     "@ngrx/store-devtools": "^13.1.0",
     "axios": "^0.26.1",
+    "class-transformer": "^0.5.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

@@ -1,22 +1,19 @@
-export interface ITodoState {
-    _id?: null | string,
-    text: string,
-    isCompleted: Boolean
+export class Todo {
+    _id?: null | string;
+    text!: string;
+    isCompleted!: Boolean;
 }
 
+export class Category{
+    _id?: null | string;
+    title?: null | string;
+    todos!: Todo[]
+}
 
-export interface ICategoryState {
-    _id: null | string,
-    title: null | string,
-    todos:  ITodoState[]
-};
+export class Categories {
+    categories!: Category[];
+}
 
-export interface ICategoriesState {
-    categories: ICategoryState[],
-    status?: string | null
-};
-
-export const initialCategoriesState: ICategoriesState = {
+export const initialCategoriesState: Categories = {
     categories: [],
-    status: null
 }

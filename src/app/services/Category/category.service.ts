@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { AddNewCategory, UpdateTodo } from "src/app/store/actions/category.actions";
+import { AddNewCategory } from "src/app/store/actions/category.actions";
 import { IAppState } from "src/app/store/state/app.state";
-import { ICategoryState } from "src/app/store/state/categories.state";
+import { Category} from "src/app/store/state/categories.state";
 
 
 @Injectable({
@@ -13,7 +13,7 @@ export class CategoryService {
         private store: Store<IAppState>
     ) {}
 
-    public saveNewCategory(newCategory: ICategoryState) {
+    public saveNewCategory(newCategory: Category) {
         const res = this.store.dispatch(new AddNewCategory(newCategory))
     }
 }

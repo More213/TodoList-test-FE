@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
+import { plainToClass } from 'class-transformer';
 import { Store } from "@ngrx/store";
 import { switchMap, of, take ,interval } from "rxjs";
 import { APIService } from "src/app/services/API/api.service";
@@ -14,6 +15,7 @@ import { IAppState } from "../state/app.state";
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { MatDialog } from "@angular/material/dialog";
 import { DialogMessage } from "src/app/components/dialog-message/dialog-message.component";
+import { Categories } from "../state/categories.state";
 
 @Injectable()
 export class CategoryEffects {
@@ -21,7 +23,10 @@ export class CategoryEffects {
     getCategories = this.actions.pipe(
         ofType<GetCategories>(ECategoryActions.GetCategories),
         switchMap(() => this.Api.getString()),
-        switchMap((categoryHttp: any) => of(new GetCategoriesSuccess(categoryHttp)))
+        switchMap((categoryHttp: any) => {
+            const category = plainToClass(Categories, {categories: categoryHttp});
+            return of(new GetCategoriesSuccess(category.categories))
+        })
     )
 
     @Effect()
