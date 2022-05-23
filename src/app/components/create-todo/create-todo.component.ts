@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef} from '@angular/material/dialog';
 import { DialogData } from '../../app.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,6 +19,7 @@ import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
 })
 
 export class CreateTodoComponent implements OnInit {
+  @ViewChild('search') searchElement!: ElementRef;
   public titels: Category[] = [];
 
     profileForm = new FormGroup({
@@ -68,8 +69,11 @@ export class CreateTodoComponent implements OnInit {
     this.onNoClick();
   }
 
-  switchCastomTitle(): void {
-    this.isCastomTitle = true
+  switchCastomTitle(show: boolean): void {
+    this.isCastomTitle = show
+    setTimeout(()=>{
+    this.searchElement.nativeElement.focus();
+  },0);  
   }
 
   onNoClick(): void {

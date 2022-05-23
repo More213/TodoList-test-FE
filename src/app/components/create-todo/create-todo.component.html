@@ -12,16 +12,17 @@
         <mat-form-field appearance="fill">
             <mat-label>Категория</mat-label>
             <mat-select formControlName="_id">
-              <mat-option *ngFor="let title of titels" [value]="title._id">
+              <mat-option *ngFor="let title of titels" [value]="title._id" (click)="switchCastomTitle(false)">
                 <!-- <ng-content [value]="title.title"></ng-content>  -->
                   {{title.title}}
                 </mat-option>
-              <mat-option (click)="switchCastomTitle()">Новая категория</mat-option>
+              <mat-option (click)="switchCastomTitle(true)">Новая категория</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field *ngIf="isCastomTitle">
             <input 
-            matInput 
+            matInput
+            #search
             class="form-control"
             formControlName="title"
             placeholder="Новая категория"
