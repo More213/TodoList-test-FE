@@ -4,6 +4,12 @@ export class Todo {
     isCompleted!: Boolean;
 }
 
+export class TodoCheck {
+    todoId!: string;
+    categoryId!: string;
+    isCompleted!: boolean;
+}
+
 export class Category{
     _id?: null | string;
     title?: null | string;

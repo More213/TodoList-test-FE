@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Category, Categories, Todo } from "../state/categories.state";
+import { Category, Categories, Todo, TodoCheck } from "../state/categories.state";
 
 export enum ECategoryActions {
     GetCategories = '[Category] Get Categories',
@@ -42,7 +42,7 @@ export class UpdateTodoSuccess implements Action {
 
 export class CheckTodo implements Action {
     public readonly type = ECategoryActions.CheckTodo
-    constructor( public payload: any) {}
+    constructor( public payload: TodoCheck) {}
 }
 
 export type CategoriesActions = 

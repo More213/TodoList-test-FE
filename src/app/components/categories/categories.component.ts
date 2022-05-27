@@ -5,6 +5,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { GetCategories } from 'src/app/store/actions/category.actions';
 import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
 import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
+import { TodoCheck } from 'src/app/store/state/categories.state';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ToDoService } from 'src/app/services/ToDo/ToDo.service';
 })
 
 export class CategoriesComponent implements OnInit {
-  public categories: any 
+  public categories: any;
   
   constructor(
     private store: Store<IAppState>,
@@ -27,16 +28,12 @@ export class CategoriesComponent implements OnInit {
     this.getAllCategories();
   }
 
-  getAllCategories(): any {
+  getAllCategories(): void {
     this.store.dispatch(new GetCategories())
   }
-  
 
-  checkedTodo(todo: any) {
-    if(!todo.isComplete) {
-      const updateTodo = {isComplete: !todo.isComplete, todoId: todo.todo._id, categoryId: todo.categoryId}
-      this.todoService.saveCheckTodo(updateTodo)
-    }
+  checkedTodo(todo: TodoCheck):void {
+    this.todoService.saveCheckTodo(todo)
   }
 }
 

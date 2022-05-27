@@ -13,7 +13,7 @@ export class CategoryService {
         private store: Store<IAppState>
     ) {}
 
-    public saveNewCategory(newCategory: Category) {
-        const res = this.store.dispatch(new AddNewCategory(newCategory))
+    public saveNewCategory(newCategory: Category): void {
+        this.store.dispatch(new AddNewCategory(newCategory))
     }
 }

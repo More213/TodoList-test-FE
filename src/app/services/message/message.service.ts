@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 export class MessageService {
     massages: string[] = [];
 
-    add(massage: string) {
+    add(massage: string): void {
         this.massages.push(massage);
     }
 

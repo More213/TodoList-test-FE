@@ -38,7 +38,8 @@ export class CategoryEffects {
                 this.store.dispatch(new GetCategories())
             }),
             catchError(error => of(this.openDialog()))
-        ))
+    )),
+        
     )
         
     @Effect()

@@ -13,25 +13,24 @@ export class APIService {
   ) { }
 
   public getString(){
-    const res = this.httpClient.get(`/getCategories`, {responseType: 'json'});
+    const res = this.httpClient.get(`${this.dataUrl}/getCategories`, {responseType: 'json'});
     return res
   }
 
   public addNewCategory(category: Category):any{
-    const res = this.httpClient.post(`/post`, category)
+    const res = this.httpClient.post(`${this.dataUrl}/post`, category)
     return res
   }
 
   public addNewTodo(category: Category): any {
-    const res = this.httpClient.post(`/postTodo`, category);
+    const res = this.httpClient.post(`${this.dataUrl}/postTodo`, category);
     return res
   }
 
-  public checkTodoRequest(category: Category): any {
-    const res = this.httpClient.post(`/checkTodo`, category);
+  public checkTodoRequest(category: any): any {
+    const res = this.httpClient.post(`${this.dataUrl}/checkTodo`, category);
     return res
   }
-  
 }
 
 

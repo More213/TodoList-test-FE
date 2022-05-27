@@ -4,9 +4,11 @@
                 <mat-card-title >{{category.title}}</mat-card-title>
                 <div *ngFor="let todo of category.todos">
                     <mat-checkbox class="todo_style" 
-                    (change)="checkedTodo({todo: todo, categoryId: category._id})" 
+                    (change)="checkedTodo({
+                        isCompleted: !todo.isCompleted,
+                        todoId: todo._id,
+                        categoryId: category._id})"
                     [checked]="todo.isCompleted"
-                    [disabled]="todo.isCompleted"
                     >{{todo.text}}</mat-checkbox>
                 </div>
         
