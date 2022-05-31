@@ -1,4 +1,3 @@
-import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export class BehaviorSubjectItem<T> {

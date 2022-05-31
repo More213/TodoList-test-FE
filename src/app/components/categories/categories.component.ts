@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+// import { select, Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 // import { GetCategories } from 'src/app/store/actions/category.actions';
 // import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
 import { ToDoService } from 'src/app/services/todo/todo.service';
-import { TodoCheck } from 'src/app/store/state/categories.state';
-
+import { Category, TodoCheck } from 'src/app/store/state/categories.state';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -14,13 +14,14 @@ import { TodoCheck } from 'src/app/store/state/categories.state';
 })
 
 export class CategoriesComponent implements OnInit {
-  public categories: any;
+  // public categories: Observable<Category[]>;
   
   constructor(
-    private store: Store<IAppState>,
+    // private store: Store<IAppState>,
     private todoService: ToDoService
     ) {
       // this.store.pipe(select(selectCategoryList)).subscribe((el) => this.categories =  el)
+      // this.categories
     }
 
   ngOnInit(): void {

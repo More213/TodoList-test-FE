@@ -1,4 +1,4 @@
-import { Category, Todo, TodoCheck } from "../state/categories.state";
+import { Category, Todo, TodoCheck, Categories } from "../state/categories.state";
 
 export enum ECategoryActions {
     GetCategories = '[Category] Get Categories',

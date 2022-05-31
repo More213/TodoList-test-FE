@@ -1,14 +1,14 @@
 // import { Injectable } from "@angular/core";
 import { Injectable } from "@angular/core";
-import { Categories, Category, initialCategoryState } from "./categories.state";
+import { Categories, initialCategoriesState } from "./categories.state";
 import { BehaviorSubjectItem } from '../../services/behavior-subject-item/behavior-subject-item.service'
 
 export class IAppState {
-    categories!: Category[];
+    categories!: Categories;
 }
 
 export const appInitialState: IAppState = {
-    categories: [initialCategoryState]
+    categories: initialCategoriesState
 }
 
 @Injectable()
@@ -20,8 +20,6 @@ export class Store<IAppState> {
   }
 }
 
-// const appInitialState: AppState = {/* ... */};
-
 export function initStore(store: Store<IAppState>) {
-//   return () => store.init();
+  return () => store.init(appInitialState);
 }

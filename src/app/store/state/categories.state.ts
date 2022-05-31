@@ -23,26 +23,19 @@ export class Category{
 export class Categories {
     categories!: Category[];
 }
-export const initialCategoryState: Category = {
-    _id: '',
-    title!: '',
-    todos!: [{
-        _id: '',
-        text: '',
-        isCompleted: false
-    }]
+export const initialCategoriesState: Categories = {
+    categories!: []
 }
 
 @Injectable()
 export class CategoriesStore {
-    categoryState:BehaviorSubjectItem<Category[]> = new BehaviorSubjectItem([initialCategoryState]);
+    categoryState:BehaviorSubjectItem<Categories> = new BehaviorSubjectItem(initialCategoriesState);
 
     setInitialState(data: any) {
         const oldState = this.categoryState.value;
-        this.categoryState.value = [
-            ...oldState,
-            data
-        ]
+        this.categoryState.value = {
+            categories: [...oldState.categories, ...data]
+        }
     }
 }
 
