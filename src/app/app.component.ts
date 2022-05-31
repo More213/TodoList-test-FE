@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
-import { APIService } from './services/API/api.service';
+import { APIService } from './services/api/api.service';
 
 
 export interface TodoData {
@@ -30,14 +30,15 @@ export interface DialogData {
 
 
 export class AppComponent implements OnInit {
-  constructor(
-    public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   openDialog(): void{
     const dialogRef = this.dialog.open(CreateTodoComponent, {
-      width: '400px'
+      disableClose: false,
+      hasBackdrop: true,
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

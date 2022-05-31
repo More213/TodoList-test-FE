@@ -1,5 +1,4 @@
-import { Action } from "@ngrx/store";
-import { Category, Categories, Todo, TodoCheck } from "../state/categories.state";
+import { Category, Todo, TodoCheck } from "../state/categories.state";
 
 export enum ECategoryActions {
     GetCategories = '[Category] Get Categories',
@@ -11,45 +10,46 @@ export enum ECategoryActions {
     CheckTodo = '[Todo] Check Todo'
 }
 
-export class GetCategories implements Action {
-    public readonly type = ECategoryActions.GetCategories;
+interface GetCategories {
+    type: ECategoryActions.GetCategories,
+    payload: Category[]
 }
 
-export class GetCategoriesSuccess implements Action {
-    public readonly type = ECategoryActions.GetCategoriesSuccess
-    constructor( public payload: Category[]) {}
+interface GetCategoriesSuccess {
+    type: ECategoryActions.GetCategoriesSuccess,
+    payload: Category[]
 }
 
-export class AddNewCategory implements Action {
-    public readonly type = ECategoryActions.AddNewCategory
-    constructor( public payload: Category) {}
+interface AddNewCategory {
+    type: ECategoryActions.AddNewCategory,
+    payload: Category
 }
 
-export class AddNewCategorySuccess implements Action {
-    public readonly type = ECategoryActions.AddNewCategorySuccess
-    constructor( public payload: string) {}
+interface AddNewCategorySuccess {
+    type: ECategoryActions.AddNewCategorySuccess,
+    payload: string
 }
 
-export class UpdateTodo implements Action {
-    public readonly type = ECategoryActions.UpdateTodo
-    constructor( public payload: Category) {}
+interface UpdateTodo {
+    type: ECategoryActions.UpdateTodo,
+    payload: Category
+    
 }
 
-export class UpdateTodoSuccess implements Action {
-    public readonly type = ECategoryActions.UpdateTodoSuccess
-    constructor( public payload: Todo) {}
+interface UpdateTodoSuccess {
+    type: ECategoryActions.UpdateTodoSuccess,
+    payload: Todo
 }
 
-export class CheckTodo implements Action {
-    public readonly type = ECategoryActions.CheckTodo
-    constructor( public payload: TodoCheck) {}
+interface CheckTodo {
+    type: ECategoryActions.CheckTodo,
+    payload: Todo
 }
 
-export type CategoriesActions = 
-    GetCategories | 
-    GetCategoriesSuccess |
-    UpdateTodo |
-    UpdateTodoSuccess |
-    AddNewCategory |
-    AddNewCategorySuccess |
-    CheckTodo;
+export type CategoriesActions = GetCategories |
+GetCategoriesSuccess|
+UpdateTodo |
+UpdateTodoSuccess |
+AddNewCategory |
+AddNewCategorySuccess |
+CheckTodo

@@ -9,10 +9,11 @@
             placeholder="Название задачи"
             />
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="field-width">
             <mat-label>Категория</mat-label>
             <mat-select formControlName="_id">
-              <mat-option *ngFor="let title of titels" [value]="title._id" (click)="switchCastomTitle(false)">
+              <mat-option *ngFor="let title of titels"
+              [value]="title._id" (click)="switchCastomTitle(false)">
                 {{title.title}}
               </mat-option>
               <mat-option (click)="switchCastomTitle(true)">Новая категория</mat-option>

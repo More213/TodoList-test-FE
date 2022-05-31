@@ -1,16 +1,27 @@
-import { RouterReducerState } from "@ngrx/router-store";
-import { Categories, initialCategoriesState } from "./categories.state";
-
+// import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Categories, Category, initialCategoryState } from "./categories.state";
+import { BehaviorSubjectItem } from '../../services/behavior-subject-item/behavior-subject-item.service'
 
 export class IAppState {
-    router?: RouterReducerState;
-    categories!: Categories;
+    categories!: Category[];
 }
 
-export const initialAppState: IAppState = {
-    categories: initialCategoriesState
+export const appInitialState: IAppState = {
+    categories: [initialCategoryState]
 }
 
-export function getInitialState(): IAppState {
-    return initialAppState
+@Injectable()
+export class Store<IAppState> {
+  public state!: BehaviorSubjectItem<IAppState>;
+
+  init(initialState: IAppState) {
+    this.state = new BehaviorSubjectItem(initialState);
+  }
+}
+
+// const appInitialState: AppState = {/* ... */};
+
+export function initStore(store: Store<IAppState>) {
+//   return () => store.init();
 }
