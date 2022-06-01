@@ -3,7 +3,7 @@ import { MatDialogRef} from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
-// import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
+import { selectCategoryList } from 'src/app/store/selectors/category.selectors';
 import { Category } from 'src/app/store/state/categories.state';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ToDoService } from 'src/app/services/todo/todo.service';
@@ -33,17 +33,17 @@ export class CreateTodoComponent implements OnInit {
     private categoryService: CategoryService,
     private todoService: ToDoService,
     ) {
-      // this.store.pipe(select(selectCategoryList)).subscribe((el) => this.titels = el)
+      this.store.pipe(select(selectCategoryList)).subscribe((el) => this.titels = el)
     }
 
   ngOnInit(): void {
   }
   
   findTitelCategory() {
-    // this.store.pipe(select(selectCategoryList)).subscribe((el) => {
-    //   let selectedCategory = el.find((i) => i._id === this.profileForm.value._id)
-    //   this.profileForm.patchValue({title: selectedCategory?.title})
-    // });
+    this.store.pipe(select(selectCategoryList)).subscribe((el) => {
+      let selectedCategory = el.find((i) => i._id === this.profileForm.value._id)
+      this.profileForm.patchValue({title: selectedCategory?.title})
+    });
   }
 
   saveCategoryTodo(): void {
@@ -53,6 +53,7 @@ export class CreateTodoComponent implements OnInit {
           _id: this.profileForm.value._id,
           title: this.profileForm.value.title,
           todos: [{
+            _id: null,
             text: this.profileForm.value.todo,
             isCompleted: false
             }]

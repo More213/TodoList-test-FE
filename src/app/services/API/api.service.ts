@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Category } from 'src/app/store/state/categories.state';
 
@@ -17,17 +17,17 @@ export class APIService {
     return res
   }
 
-  public addNewCategory(category: Category):any{
+  public addNewCategory(category: Category){
     const res = this.httpClient.post(`${this.dataUrl}/post`, category)
     return res
   }
 
-  public addNewTodo(category: Category): any {
+  public addNewTodo(category: Category) {
     const res = this.httpClient.post(`${this.dataUrl}/postTodo`, category);
     return res
   }
 
-  public checkTodoRequest(category: any): any {
+  public checkTodoRequest(category: any) {
     const res = this.httpClient.post(`${this.dataUrl}/checkTodo`, category);
     return res
   }

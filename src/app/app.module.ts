@@ -1,4 +1,4 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 // import { Store}
@@ -20,13 +20,12 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './store/reducer/app.reducer';
-// import { EffectsModule } from '@ngrx/effects';
-// import { CategoryEffects } from './store/effects/category.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { CategoryEffects } from './store/effects/category.effects';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DialogMessage } from './components/dialog-message/dialog-message.component';
-import { appInitialState, IAppState, Store } from './store/state/app.state';
 
-export const INITIAL_STATE: InjectionToken<IAppState> = new InjectionToken('InitialState');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +37,7 @@ export const INITIAL_STATE: InjectionToken<IAppState> = new InjectionToken('Init
   imports: [
     BrowserModule,
     StoreModule.forRoot(appReducers),
-    // EffectsModule.forRoot([CategoryEffects]),
+    EffectsModule.forRoot([CategoryEffects]),
     StoreDevtoolsModule.instrument(),
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -55,9 +54,7 @@ export const INITIAL_STATE: InjectionToken<IAppState> = new InjectionToken('Init
     MatCheckboxModule,
   ],
   providers: [
-    Store,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
-    { provide: INITIAL_STATE, useValue: appInitialState },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
 })
