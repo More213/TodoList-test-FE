@@ -1,8 +1,31 @@
 .flex-col{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .flex-row{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    
+    button{
+        margin: 0 10px;
+    }
+}
+.field-width{
+    width: 100%;
+}
+
+.mat-form-field{
+    width: 300px; 
+}
+.form-control {
+    width: 300px;
+}
+.mat-form-field-infix {
+    width:100% !important;
+}
+.mat-form-field{
+    margin: 0 20px !important;
 }

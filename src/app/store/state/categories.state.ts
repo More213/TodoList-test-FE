@@ -1,22 +1,36 @@
-export interface ITodoState {
-    _id?: null | string,
-    text: string,
-    isCompleted: Boolean
+import { Expose, plainToClass } from 'class-transformer';
+
+export class Todo {
+    _id?: null | string;
+    text!: string;
+    isCompleted!: Boolean;
 }
 
+export class TodoCheck {
+    todoId!: string;
+    categoryId!: string;
+    isCompleted!: boolean;
+}
 
-export interface ICategoryState {
-    _id: null | string,
-    title: null | string,
-    todos:  ITodoState[]
-};
+export class Category{
+    _id?: null | string;
+    title?: null | string;
+    todos!: Todo[]
+}
 
-export interface ICategoriesState {
-    categories: ICategoryState[],
-    status?: string | null
-};
+export class Categories {
+    @Expose() categories!: Category[];
 
-export const initialCategoriesState: ICategoriesState = {
+    // @Expose()
+    // getTitels() {
+    //     return this.categories.map((title) => {
+
+    //     })
+    // }
+}
+
+export const initialCategoriesState: Categories = {
     categories: [],
-    status: null
 }
+
+// export const initialCatState = plainToClass(Categories, initialCategoriesState)

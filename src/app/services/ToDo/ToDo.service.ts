@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { AddNewCategory, CheckTodo, UpdateTodo } from "src/app/store/actions/category.actions";
+import { CheckTodo, UpdateTodo } from "src/app/store/actions/category.actions";
 import { IAppState } from "src/app/store/state/app.state";
-import { ICategoryState } from "src/app/store/state/categories.state";
+import { Category, TodoCheck } from "src/app/store/state/categories.state";
 
 
 @Injectable({
@@ -13,11 +13,11 @@ export class ToDoService {
         private store: Store<IAppState>
     ) {}
 
-    public saveNewToDo(newCategory: ICategoryState) {
+    public saveNewToDo(newCategory: Category): void {
         this.store.dispatch(new UpdateTodo(newCategory))
     }
 
-    public saveCheckTodo(todo: any) {
+    public saveCheckTodo(todo: TodoCheck): void {
         this.store.dispatch(new CheckTodo(todo))
     }
 }

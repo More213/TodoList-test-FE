@@ -23,13 +23,16 @@ import { appReducers } from './store/reducer/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoryEffects } from './store/effects/category.effects';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DialogMessage } from './components/dialog-message/dialog-message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateTodoComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    DialogMessage
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     MatCardModule,
     MatPseudoCheckboxModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

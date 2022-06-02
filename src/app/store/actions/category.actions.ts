@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { ICategoryState, ITodoState } from "../state/categories.state";
+import { Category, Todo, TodoCheck } from "../state/categories.state";
 
 export enum ECategoryActions {
     GetCategories = '[Category] Get Categories',
@@ -17,12 +17,12 @@ export class GetCategories implements Action {
 
 export class GetCategoriesSuccess implements Action {
     public readonly type = ECategoryActions.GetCategoriesSuccess
-    constructor( public payload: ICategoryState[]) {}
+    constructor( public payload: Category[]) {}
 }
 
 export class AddNewCategory implements Action {
     public readonly type = ECategoryActions.AddNewCategory
-    constructor( public payload: ICategoryState) {}
+    constructor( public payload: Category) {}
 }
 
 export class AddNewCategorySuccess implements Action {
@@ -32,17 +32,17 @@ export class AddNewCategorySuccess implements Action {
 
 export class UpdateTodo implements Action {
     public readonly type = ECategoryActions.UpdateTodo
-    constructor( public payload: ICategoryState) {}
+    constructor( public payload: Category) {}
 }
 
 export class UpdateTodoSuccess implements Action {
     public readonly type = ECategoryActions.UpdateTodoSuccess
-    constructor( public payload: ITodoState) {}
+    constructor( public payload: Todo) {}
 }
 
 export class CheckTodo implements Action {
     public readonly type = ECategoryActions.CheckTodo
-    constructor( public payload: any) {}
+    constructor( public payload: TodoCheck) {}
 }
 
 export type CategoriesActions = 

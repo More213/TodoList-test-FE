@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IAppState } from 'src/app/store/state/app.state';
-import { Store } from '@ngrx/store';
-import { GetCategories } from 'src/app/store/actions/category.actions';
+import { Category } from 'src/app/store/state/categories.state';
 
 @Injectable({
   providedIn: 'root'
@@ -12,37 +10,27 @@ export class APIService {
   dataUrl = 'http://' + environment.server + ':3000'
   constructor(
     public httpClient: HttpClient,
-    private store: Store<IAppState>) { }
+  ) { }
 
   public getString(){
-    const res = this.httpClient.get(`${this.dataUrl}`, {responseType: 'json'});
+    const res = this.httpClient.get(`${this.dataUrl}/getCategories`, {responseType: 'json'});
     return res
   }
 
-  public addNewCategory(category: any): any {
-    const res = this.httpClient.post(`${this.dataUrl}/post`, category);
-    res.subscribe((r: any) => {
-      if(r.message === 'Post has been submitted successfully!') {
-        this.store.dispatch( new GetCategories())
-      }
-    })
+  public addNewCategory(category: Category){
+    const res = this.httpClient.post(`${this.dataUrl}/post`, category)
+    return res
   }
 
-  public addNewTodo(category: any): any {
+  public addNewTodo(category: Category) {
     const res = this.httpClient.post(`${this.dataUrl}/postTodo`, category);
-    res.subscribe((r: any) => {
-      if(r.message === 'Post has been submitted successfully!') {
-        this.store.dispatch( new GetCategories())
-      }
-    })
+    return res
   }
 
-  public checkTodoRequest(category: any): any {
+  public checkTodoRequest(category: any) {
     const res = this.httpClient.post(`${this.dataUrl}/checkTodo`, category);
-    res.subscribe((r: any) => {
-      if(r.message === 'Post has been submitted successfully!') {
-        this.store.dispatch( new GetCategories())
-      }
-    })
+    return res
   }
 }
+
+
