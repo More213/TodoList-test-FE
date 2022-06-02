@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { plainToClass } from 'class-transformer';
 import { Store } from "@ngrx/store";
-import { switchMap, of, take ,interval } from "rxjs";
+import { switchMap, of } from "rxjs";
 import { APIService } from "src/app/services/api/api.service";
 import { 
     AddNewCategory, 

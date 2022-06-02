@@ -1,13 +1,7 @@
-import { HttpClient,
-  HttpParams,
-  HttpErrorResponse,
-  HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
-import { APIService } from './services/api/api.service';
 
 
 export interface TodoData {
