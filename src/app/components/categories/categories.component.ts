@@ -22,7 +22,6 @@ export class CategoriesComponent implements OnInit {
     ) {
       this.store.pipe(select(selectCategoryList)).subscribe((el) => {
         this.categories =  el
-        console.log(this.categories)
       })
     }
 

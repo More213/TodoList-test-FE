@@ -35,7 +35,7 @@ export class CategoryEffects {
     addCategory = this.actions.pipe(
         ofType<AddNewCategory>(ECategoryActions.AddNewCategory),
         switchMap( action => this.Api.addNewCategory(action.payload).pipe(
-            map(res =>  {
+            map(() =>  {
                 this.store.dispatch(new GetCategories())
             }),
             catchError(error => of(this.openDialog()))
@@ -47,7 +47,7 @@ export class CategoryEffects {
     addNewToDo = this.actions.pipe(
         ofType<UpdateTodo>(ECategoryActions.UpdateTodo),
         switchMap(action => this.Api.addNewTodo(action.payload).pipe(
-            map(res =>  {
+            map(() =>  {
                 this.store.dispatch(new GetCategories())
             }),
             catchError(error => of(this.openDialog()))
@@ -58,7 +58,7 @@ export class CategoryEffects {
     checkTodo = this.actions.pipe(
         ofType<CheckTodo>(ECategoryActions.CheckTodo),
         switchMap(action => this.Api.checkTodoRequest(action.payload).pipe(
-            map(res =>  {
+            map(() =>  {
                 this.store.dispatch(new GetCategories())
             }),
             catchError(error => of(this.openDialog()))
