@@ -6,11 +6,13 @@ import { switchMap, of } from "rxjs";
 import { APIService } from "src/app/services/api/api.service";
 import { 
     AddNewCategory, 
+    AddNewCategorySuccess, 
     CheckTodo, 
     ECategoryActions, 
     GetCategories, 
     GetCategoriesSuccess, 
-    UpdateTodo} from "../actions/category.actions";
+    UpdateTodo,
+    UpdateTodoSuccess} from "../actions/category.actions";
 import { IAppState } from "../state/app.state";
 import { catchError, map } from 'rxjs/operators';
 import { MatDialog } from "@angular/material/dialog";
@@ -35,8 +37,9 @@ export class CategoryEffects {
     addCategory = this.actions.pipe(
         ofType<AddNewCategory>(ECategoryActions.AddNewCategory),
         switchMap( action => this.Api.addNewCategory(action.payload).pipe(
-            map(() =>  {
-                this.store.dispatch(new GetCategories())
+            map((el: any) =>  {
+                console.log(el)
+                this.store.dispatch(new AddNewCategorySuccess(el))
             }),
             catchError(error => of(this.openDialog()))
     )),
@@ -47,8 +50,8 @@ export class CategoryEffects {
     addNewToDo = this.actions.pipe(
         ofType<UpdateTodo>(ECategoryActions.UpdateTodo),
         switchMap(action => this.Api.addNewTodo(action.payload).pipe(
-            map(() =>  {
-                this.store.dispatch(new GetCategories())
+            map((el: any) =>  {
+                this.store.dispatch( new UpdateTodoSuccess(el))
             }),
             catchError(error => of(this.openDialog()))
         ))

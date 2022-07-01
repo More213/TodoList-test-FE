@@ -19,6 +19,7 @@ export class APIService {
 
   public addNewCategory(category: Category){
     const res = this.httpClient.post(`${this.dataUrl}/post`, category)
+    console.log(res)
     return res
   }
 

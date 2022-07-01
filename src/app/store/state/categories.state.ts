@@ -4,17 +4,21 @@ export class Todo {
     _id?: null | string;
     text!: string;
     isCompleted!: Boolean;
+    atUpdate?: string
 }
 
 export class TodoCheck {
     todoId!: string;
     categoryId!: string;
     isCompleted!: boolean;
+    atUpdate?: string
+
 }
 
 export class Category{
     _id?: null | string;
     title?: null | string;
+    atCreated?: null | string;
     todos!: Todo[]
 }
 

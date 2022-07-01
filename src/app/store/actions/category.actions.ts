@@ -27,7 +27,7 @@ export class AddNewCategory implements Action {
 
 export class AddNewCategorySuccess implements Action {
     public readonly type = ECategoryActions.AddNewCategorySuccess
-    constructor( public payload: string) {}
+    constructor( public payload: Category) {}
 }
 
 export class UpdateTodo implements Action {
@@ -37,7 +37,7 @@ export class UpdateTodo implements Action {
 
 export class UpdateTodoSuccess implements Action {
     public readonly type = ECategoryActions.UpdateTodoSuccess
-    constructor( public payload: Todo) {}
+    constructor( public payload: any ) {}
 }
 
 export class CheckTodo implements Action {
