@@ -8,7 +8,8 @@ export enum ECategoryActions {
     AddNewCategorySuccess = '[Category] Post Categories Success',
     UpdateTodo = '[Todo] Update Categories',
     UpdateTodoSuccess = '[Todo] Update Categories Success',
-    CheckTodo = '[Todo] Check Todo'
+    CheckTodo = '[Todo] Check Todo',
+    CheckTodoSuccess = '[Todo] Check Todo Success'
 }
 
 export class GetCategories implements Action {
@@ -45,6 +46,11 @@ export class CheckTodo implements Action {
     constructor( public payload: TodoCheck) {}
 }
 
+export class CheckTodoSuccess implements Action {
+    public readonly type = ECategoryActions.CheckTodoSuccess
+    constructor( public payload: any) {}
+}
+
 export type CategoriesActions = 
     GetCategories | 
     GetCategoriesSuccess |
@@ -52,4 +58,5 @@ export type CategoriesActions =
     UpdateTodoSuccess |
     AddNewCategory |
     AddNewCategorySuccess |
-    CheckTodo;
+    CheckTodo |
+    CheckTodoSuccess;
